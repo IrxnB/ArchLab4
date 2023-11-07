@@ -1,0 +1,78 @@
+﻿<Window x:Class="Arch4Client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Arch4Client"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="854">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Id" Grid.Column="0" HorizontalAlignment="Center"/>
+                <TextBlock Text="Name"  Grid.Column="1" HorizontalAlignment="Center"/>
+                <TextBlock Text="Description"  Grid.Column="2" HorizontalAlignment="Center"/>
+                <TextBlock Text="Is completed"  Grid.Column="3" HorizontalAlignment="Center"/>
+            </Grid>
+            <ListView ItemsSource="{Binding Tasks}" SelectedItem="{Binding SelectedTask}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Width="800">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding Path=Id}" Grid.Column="0" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding Path=Name}"  Grid.Column="1" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding Path=Description}"  Grid.Column="2" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding Path=IsCompleted}"  Grid.Column="3" HorizontalAlignment="Center"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="{Binding Path=Id}" Grid.Column="0" HorizontalAlignment="Center" DataContext="{Binding TaskUpdate}"/>
+                <TextBox Text="{Binding Path=Name}"  Grid.Column="1" HorizontalAlignment="Center" DataContext="{Binding TaskUpdate}"/>
+                <TextBox Text="{Binding Path=Description}"  Grid.Column="2" HorizontalAlignment="Center" DataContext="{Binding TaskUpdate}"/>
+                <TextBox Text="{Binding Path=IsCompleted}"  Grid.Column="3" HorizontalAlignment="Center" DataContext="{Binding TaskUpdate}"/>
+                <Button Content="Update" Grid.Column="4" Command="{Binding UpdateClick}"/>
+                <Button Content="Delete" Grid.Column="5" Command="{Binding DeleteClick}"/>
+            </Grid>
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Text="{Binding Path=Name}"  Grid.Column="1" HorizontalAlignment="Center" DataContext="{Binding TaskCreate}"/>
+                <TextBox Text="{Binding Path=Description}"  Grid.Column="2" HorizontalAlignment="Center" DataContext="{Binding TaskCreate}"/>
+                <TextBox Text="{Binding Path=IsCompleted}"  Grid.Column="3" HorizontalAlignment="Center" DataContext="{Binding TaskCreate}"/>
+                <Button Content="Create" Grid.Column="4" Command="{Binding CreateClick}"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>
